@@ -73,10 +73,10 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default{
 		data(){
 			return{
-				userInfo:{},
 				goodsList:[],
 				goodsTitle:"",
 				userPicture:"",
@@ -122,7 +122,12 @@
 			this.userPicture=options.userPicture,
 			this.nickName=options.nickName,
 			this.getGoodsList(this.categoryId)
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
+		},
+		computed: {
+			...mapState({
+				loginStatus:state=>state.user.loginStatus,
+				userInfo:state=>state.user.userInfo
+			})
 		},
 		methods:{
 			like() {
@@ -135,10 +140,10 @@
 			},
 			getGoodsList(e){
 				uni.request({
-					url:this.domain +"/commodity//listVo"+e,
+					url:this.domain +"/commodity/listVo"+e,
 					method:'GET',
 					header:{
-						token:this.userInfo.token ? this.userInfo.token: ""
+						'Content-Type':'application/x-www-form-urlencoded',
 					},
 					success: (res) => {
 						this.goodsList=JSON.parse(res.data.data.subimages)
@@ -152,9 +157,19 @@
 			},
 			onClick(e){
 				if(e.content.text==="购物车"){
-					uni.switchTab({
-						url:"/pages/cart/cart"
-					})
+					if(this.loginStatus=false){
+						uni.showToast({
+							title:"请先登录",
+							icon:'error'
+						})
+						uni.navigateTo({
+							url:"/pages/login/login"
+						})
+					}else{
+						uni.switchTab({
+							url:"/pages/cart/cart"
+						})
+					}
 				}
 				
 			},

@@ -42,20 +42,19 @@
 		},
 		onLoad(options) {
 			this.name=options.name,
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
 			this.getGoodsList()
 		},
 		methods:{
 			//获取商品信息
 			getGoodsList(){
 				uni.request({
-					url:this.domain+"/commodity",
+					url:this.domain+"/commodity/listVo",
 					method:'GET',
 					data:{
 						name:this.name
 					},
 					header:{
-						token:this.userInfo.token
+						'Content-Type':'application/x-www-form-urlencoded',
 					},
 					success: (res) => {
 						if(res.data.data==undefined){

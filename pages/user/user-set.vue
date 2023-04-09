@@ -55,6 +55,7 @@
 								},
 								success: () => {
 									that.logout()
+									uni.removeStorageSync('userInfo')
 									uni.showToast({
 										title: '退出成功',
 										icon: 'none'

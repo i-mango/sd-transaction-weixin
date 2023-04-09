@@ -34,6 +34,7 @@
 
 <script>
 	import selectLay from '../../components/select-lay/select-lay.vue';
+	import {mapState} from 'vuex';
 	export default{
 		components:{
 			selectLay
@@ -43,7 +44,6 @@
 				formData:{
 					name:'',
 					title:"",
-					userInfo:{},
 					subtitle:"",
 					type:0,
 					price:"",
@@ -55,24 +55,16 @@
 				tval:0
 			}
 		},
+		computed:{
+			...mapState({
+				loginStatus:state=>state.user.loginStatus,
+				userInfo:state=>state.user.userInfo
+			})
+		},
 		onShow() {
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
-			this.hasLogin()
 			this.getType()
 		},
 		methods:{
-			//判断是否已经登录
-			hasLogin(){
-				if(this.userInfo.loginStatus=false){
-					uni.showToast({
-						title:"请先登录再试",
-						icon:'error'
-					})
-					uni.navigateTo({
-						url:"/pages/login/login"
-					})
-				}
-			},
 			//获取商品类别
 			getType(){
 				uni.request({
@@ -94,7 +86,16 @@
 			    }
 			},
 			upload(e){
-				const tempFilePaths = e.tempFilePaths;//e是获取的图片源
+				if(this.loginStatus=false){
+					uni.showToast({
+						title:"请先登录",
+						icon:"error"
+					})
+					uni.navigateTo({
+						url:"/pages/login/login"
+					})
+				}else{
+					const tempFilePaths = e.tempFilePaths;//e是获取的图片源
 				uni.uploadFile({
 					url:this.domain+'/upload',
 					filePath:tempFilePaths[0],
@@ -105,9 +106,20 @@
 						this.formData.mainimage=JSON.parse(res.data).data
 					}
 				})
+				}
 			},
 			async handleSelect(res) { // 上传图片
-			    await this.uploadImg(res.tempFilePaths);
+				if(this.loginStatus=false){
+					uni.showToast({
+						title:"请先登录",
+						icon:"error"
+					})
+					uni.navigateTo({
+						url:"/pages/login/login"
+					})
+				}else{
+					await this.uploadImg(res.tempFilePaths);
+				}
 			},
 			async uploadImg(tempFilePaths) {
 			    if (!tempFilePaths.length) return;
@@ -121,8 +133,6 @@
 			            token:this.userInfo.token 
 			        }
 			    });
-			    console.log("err", err)
-			    console.log("data", data)
 			    if (!this.isGuid(data)) {
 			        // upload fail
 			        this.formData.subimages.pop()
@@ -138,38 +148,49 @@
 			},
 
 			publishGoods(){
-				uni.showLoading({
-					title:"发布中..."
-				})
-				uni.request({
-					url:this.domain+"/commodity",
-					method:'POST',
-					data:{
-						cateId:this.tval,
-						name:this.formData.name,
-						title:this.formData.title,
-						subtitle:this.formData.subtitle,
-						price:this.formData.price,
-						mainimage:this.formData.mainimage,
-						subimages: JSON.stringify(this.formData.subimages),
-						detail:this.formData.detail
-					},
-					header:{
-						token:this.userInfo.token
-					},
-					success: (res) => {
-						uni.hideLoading()
-						if(res.data.code==200){
-							uni.showToast({
-								title:"发布成功"
-							})
-						}else{
-							uni.showToast({
-								title:"发布失败请检查"
-							})
+				if(this.loginStatus=false){
+					uni.showToast({
+						title:"请先登录",
+						icon:"error"
+					})
+					uni.navigateTo({
+						url:"/pages/login/login"
+					})
+				}else{
+					uni.showLoading({
+						title:"发布中..."
+					})
+					uni.request({
+						url:this.domain+"/commodity",
+						method:'POST',
+						data:{
+							cateId:this.tval,
+							name:this.formData.name,
+							title:this.formData.title,
+							subtitle:this.formData.subtitle,
+							price:this.formData.price,
+							mainimage:this.formData.mainimage,
+							subimages: JSON.stringify(this.formData.subimages),
+							detail:this.formData.detail
+						},
+						header:{
+							token:this.userInfo.token
+						},
+						success: (res) => {
+							uni.hideLoading()
+							if(res.data.code==200){
+								uni.showToast({
+									title:"发布成功"
+								})
+							}else{
+								uni.showToast({
+									title:"发布失败请检查"
+								})
+							}
 						}
-					}
-				})
+					})
+				}
+				
 			},
 			change(e){
 				console.log("e",e)

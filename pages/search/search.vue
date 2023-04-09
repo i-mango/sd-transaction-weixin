@@ -44,7 +44,6 @@
 		onLoad(options) {
 			this.cateId=options.id,
 			this.typeName=options.name,
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
 			this.getGoodsList()
 		},
 		methods:{
@@ -57,7 +56,7 @@
 						categoryId:this.cateId
 					},
 					header:{
-						token:this.userInfo.token
+						'Content-Type':'application/x-www-form-urlencoded',
 					},
 					success: (res) => {
 						if(res.data.data==undefined){

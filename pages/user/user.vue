@@ -4,10 +4,10 @@
 			<image class="bg" src="../../static/images/user/user-bg1.jpg"></image>
 			<view @click="openLogin" class="user-info-box">
 				<view>
-					<image class="portrait" :src="userInfo.loginStatus==false ? '../../static/demo6.jpg' : userInfo.avatar"></image>
+					<image class="portrait" :src="loginStatus==false ? '../../static/demo6.jpg' : userInfo.avatar"></image>
 				</view>
 				<view class="info-box">
-					<text class="username">{{userInfo.loginStatus==false ? '登录/注册' : userInfo.nickName}}</text>
+					<text class="username">{{loginStatus==false ? '登录/注册' : userInfo.nickName}}</text>
 				</view>
 			</view>
 		</view>
@@ -76,10 +76,10 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default{
 		data(){
 			return{
-				userInfo:{},
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				userInfoIcon:{
@@ -114,8 +114,11 @@
 				}
 			}
 		},
-		onShow() {
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
+		computed:{
+			...mapState({
+				loginStatus:state=>state.user.loginStatus,
+				userInfo:state=>state.user.userInfo
+			})
 		},
 		methods:{
 			openOrder(e){
@@ -134,7 +137,7 @@
 			},
 			//跳转登录
 			openLogin(){
-				if (this.userInfo.loginStatus==false) {
+				if (this.loginStatus==false) {
 					uni.navigateTo({
 						url: '../login/login',
 					});
