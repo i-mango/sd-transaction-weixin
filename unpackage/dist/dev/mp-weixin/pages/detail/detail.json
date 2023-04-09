@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item",
-    "uni-goods-nav": "/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav"
-  }
-}
