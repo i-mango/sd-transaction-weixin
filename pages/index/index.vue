@@ -57,10 +57,10 @@
 				</view>
 			</scroll-view>
 		</view>
-		
+
 	</view>
-	
-		
+
+
 </template>
 
 <script>
@@ -77,7 +77,6 @@
 			}
 		},
 		onShow() {
-			this.userInfo = JSON.parse(uni.getStorageSync('userInfo'))
 			// 初始化事件
 			this.__init()
 			this.getList()
@@ -144,7 +143,7 @@
 				})
 			},
 		},
-		
+
 	}
 </script>
 
@@ -198,13 +197,13 @@
 		align-items: center;
 		margin-left: 50px;
 	}
-	
+
 	.user .avatar {
 		width: 30px;
 		height: 30px;
 		border-radius: 50%;
 	}
-	
+
 	.user .nickname {
 		font-size: 12px;
 		color: #555;
