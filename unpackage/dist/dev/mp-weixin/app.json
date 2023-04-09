@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/userInfo/userInfo",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/cart/cart",
+    "pages/search/search",
+    "pages/searchEvery/searchEvery",
+    "pages/publish/publish",
+    "pages/detail/detail",
+    "pages/pay/pay",
+    "pages/order/order",
+    "pages/user/user",
+    "pages/user/user-set"
+  ],
+  "subPackages": [],
+  "window": {
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "清闲社区二手平台",
+    "navigationBarBackgroundColor": "#0097ff",
+    "backgroundColor": "#F8F8F8",
+    "backgroundColorTop": "black"
+  },
+  "tabBar": {
+    "color": "#B5B5B5",
+    "selectedColor": "#a0e6fe",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/tab-home.png",
+        "selectedIconPath": "static/tabbar/tab-home-current.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "商品发布",
+        "iconPath": "static/tabbar/send.png",
+        "selectedIconPath": "static/tabbar/send-current.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "static/tabbar/tab-cart.png",
+        "selectedIconPath": "static/tabbar/tab-cart-current.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/tabbar/tab-my.png",
+        "selectedIconPath": "static/tabbar/tab-my-current.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

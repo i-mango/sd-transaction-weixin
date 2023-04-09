@@ -1,0 +1,100 @@
+
+.search-box{
+	height: 60px;
+	width: 100%;
+}
+.search{
+	width: 90%;
+	height: 70%;
+	margin-left: 20px;
+	margin-top: 20px;
+	border: #20c3fd 1px solid;
+	border-radius: 30px;
+}
+.search input{
+	height: 100%;
+	margin-left: 1rem;
+	display: inline-block;
+	width: 60%;
+}
+.search-txt{
+	width: 30%;
+	height: 100%;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 30px;
+	color: white;
+	background-color: #20c3fd;
+	float: right;
+}
+.nav-view{
+	width: 100px;
+	height: 100px;
+	text-align: center;
+}
+.nav-view image{
+	width: 60%;
+	height: 60%;
+}
+.title {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 10px;
+	border-left: 3px solid #e64340;
+	padding-left: 4px;
+}
+.user {
+	display: flex;
+	align-items: center;
+	margin-left: 50px;
+}
+.user .avatar {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+.user .nickname {
+	font-size: 12px;
+	color: #555;
+}
+.content{
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 10rpx;
+}
+.img{
+    margin-left: 20rpx;
+	width: 300px;
+	height: 200px;
+	border-radius: 25%;
+}
+.main-content{
+    margin: 20rpx;
+    align-content: flex-start;
+    /*父元素设置超过宽度显示...*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mian-title{
+    font-size:35rpx;
+    font-weight: bold;
+    /*过长的子元素设置不换行*/
+    white-space: nowrap;
+}
+.body-content{
+    /*让字在一条水平线上*/
+    align-items: baseline;
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    margin-top:5rpx;
+}
+.body-content-s{
+    font-size:27rpx;
+    color:#808080;
+	width: 100%;
+    margin-top:10rpx;
+    height: 45rpx;
+}
+

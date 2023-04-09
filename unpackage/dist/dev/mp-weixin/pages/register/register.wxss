@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+page {
+  background: #fff;
+}
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+.arrow {
+  margin-top: 5px;
+  width: 20px;
+  height: 20px;
+}
+.left-bottom-sign {
+  position: absolute;
+  left: -280rpx;
+  bottom: -260rpx;
+  border: 100rpx solid #d0d1fd;
+  border-radius: 50%;
+  padding: 150rpx;
+}
+.wrapper {
+  position: relative;
+  z-index: 90;
+  background: #fff;
+  padding-bottom: 40rpx;
+}
+.confirm-btn {
+  width: 630rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 50px;
+  background: #fa436a;
+  color: #fff;
+  font-size: 32rpx;
+}
+.confirm-btn:after {
+  border-radius: 100px;
+}
+.login-section {
+  position: absolute;
+  left: 0;
+  margin-top: 150rpx;
+  width: 100%;
+  font-size: 26rpx;
+  color: #606266;
+  text-align: center;
+}
+.login-section text {
+  color: #4399fc;
+  margin-left: 10rpx;
+}
+
